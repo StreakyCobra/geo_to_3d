@@ -1,17 +1,46 @@
-#+TITLE: Geo tools for 3D printing
+#+TITLE: Create 3D models from geographic data
 
 * Outline                                                             :TOC@2:
  - [[#presentation][Presentation]]
+ - [[#requirements][Requirements]]
+ - [[#how-to-build][How to build]]
  - [[#license][License]]
 
 * Presentation
-This is a tool to work with geographic data for 3D printing.
+=geo_to_3d= is a tool to create 3D models from geographic data.
+
+* Requirements
+- [[https://www.rust-lang.org/][rust]]
+- [[https://crates.io/][cargo]]
+
+* How to build
+In order to build this project, you will need to install tooling for compiling
+[[https://www.rust-lang.org/][rust]] code. See the [[#requirements][requirements]] section for the complete list.
+
+The project can be build with:
+
+#+BEGIN_SRC shell
+$ cargo build
+#+END_SRC
+
+This will generate a =target/debug/geo_to_3d= executable that can be run with
+the following command:
+
+#+BEGIN_SRC shell
+$ ./target/debug/geo_to_3d -h
+#+END_SRC
+
+Alternatively, you can directly build and run the project with:
+
+#+BEGIN_SRC shell
+$ cargo run -q -- -h
+#+END_SRC
 
 * License
 This work is licensed under the term of the [[https://www.gnu.org/licenses/gpl-3.0.html][GPL v3.0]] license:
 
 #+BEGIN_QUOTE
-Geo tools for 3D printing
+geo_to_3d is a tool to create 3D models from geographic data.
 Copyright (C) 2016 Fabien Dubosson <fabien.dubosson@gmail.com>
 
 This program is free software: you can redistribute it and/or modify
