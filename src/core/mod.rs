@@ -1,3 +1,3 @@
-pub use self::geometry::{Point, Position};
+pub use self::coord::Position;
 
-mod geometry;
+mod coord;
