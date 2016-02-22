@@ -1,10 +1,11 @@
 #[macro_use]
 extern crate clap;
 
-mod core;
-
 use clap::{Arg, ArgMatches, App};
-use core::{Point, Position};
+use core::Position;
+
+mod core;
+mod data;
 
 fn parse_arguments<'a>() -> ArgMatches<'a> {
     // Get arguments matches
@@ -15,22 +16,22 @@ fn parse_arguments<'a>() -> ArgMatches<'a> {
                       .arg(Arg::with_name("LAT_1")
                                .help("Latitude of the first point of the rectangle")
                                .required(true))
-                      .arg(Arg::with_name("LGT_1")
+                      .arg(Arg::with_name("LON_1")
                                .help("Longitude of the first point of the rectangle")
                                .required(true))
                       .arg(Arg::with_name("LAT_2")
                                .help("Latitude of the second point of the rectangle")
                                .required(true))
-                      .arg(Arg::with_name("LGT_2")
+                      .arg(Arg::with_name("LON_2")
                                .help("Longitude of the second point of the rectangle")
                                .required(true))
                       .get_matches();
 
     // Check arguments types
     value_t_or_exit!(matches.value_of("LAT_1"), f32);
-    value_t_or_exit!(matches.value_of("LGT_1"), f32);
+    value_t_or_exit!(matches.value_of("LON_1"), f32);
     value_t_or_exit!(matches.value_of("LAT_2"), f32);
-    value_t_or_exit!(matches.value_of("LGT_2"), f32);
+    value_t_or_exit!(matches.value_of("LON_2"), f32);
 
     // Return arguments matches
     matches
@@ -39,15 +40,15 @@ fn parse_arguments<'a>() -> ArgMatches<'a> {
 fn main() {
     let matches = parse_arguments();
 
-    let point_1 = Position(Point {
-        x: matches.value_of("LAT_1").unwrap().parse().unwrap(),
-        y: matches.value_of("LGT_1").unwrap().parse().unwrap(),
-    });
+    let point_1 = Position {
+        lat: matches.value_of("LAT_1").unwrap().parse().unwrap(),
+        lon: matches.value_of("LON_1").unwrap().parse().unwrap(),
+    };
 
-    let point_2 = Position(Point {
-        x: matches.value_of("LAT_2").unwrap().parse().unwrap(),
-        y: matches.value_of("LGT_2").unwrap().parse().unwrap(),
-    });
+    let point_2 = Position {
+        lat: matches.value_of("LAT_2").unwrap().parse().unwrap(),
+        lon: matches.value_of("LON_2").unwrap().parse().unwrap(),
+    };
 
     println!("{}", point_1);
     println!("{}", point_2);
