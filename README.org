@@ -12,6 +12,8 @@
 * Requirements
 - [[https://www.rust-lang.org/][rust]]
 - [[https://crates.io/][cargo]]
+- [[https://www.gnu.org/software/wget/wget.html][wget]]
+- [[http://www.info-zip.org/UnZip.html][unzip]]
 
 * How to build
 In order to build this project, you will need to install tooling for compiling

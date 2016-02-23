@@ -3,6 +3,7 @@ extern crate clap;
 
 use clap::{Arg, ArgMatches, App};
 use core::Position;
+use data::srtm::get_tile;
 
 mod core;
 mod data;
@@ -52,4 +53,5 @@ fn main() {
 
     println!("{}", point_1);
     println!("{}", point_2);
+    get_tile(&point_1);
 }
