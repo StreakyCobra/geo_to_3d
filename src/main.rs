@@ -1,12 +1,11 @@
 #[macro_use]
 extern crate clap;
 
-use clap::{Arg, ArgMatches, App};
-use core::Position;
-use data::srtm::get_tile;
-
 mod core;
-mod data;
+mod srtm;
+
+use clap::{Arg, ArgMatches, App};
+use core::Coord;
 
 fn parse_arguments<'a>() -> ArgMatches<'a> {
     // Get arguments matches
@@ -41,17 +40,16 @@ fn parse_arguments<'a>() -> ArgMatches<'a> {
 fn main() {
     let matches = parse_arguments();
 
-    let point_1 = Position {
+    let coord_1 = Coord {
         lat: matches.value_of("LAT_1").unwrap().parse().unwrap(),
         lon: matches.value_of("LON_1").unwrap().parse().unwrap(),
     };
 
-    let point_2 = Position {
+    let coord_2 = Coord {
         lat: matches.value_of("LAT_2").unwrap().parse().unwrap(),
         lon: matches.value_of("LON_2").unwrap().parse().unwrap(),
     };
 
-    println!("{}", point_1);
-    println!("{}", point_2);
-    get_tile(&point_1);
+    println!("{}", coord_1);
+    println!("{}", coord_2);
 }

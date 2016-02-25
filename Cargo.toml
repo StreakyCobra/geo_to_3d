@@ -5,3 +5,4 @@ authors = ["Fabien Dubosson <fabien.dubosson@gmail.com>"]
 
 [dependencies]
 clap = "2.1.1"
+nalgebra = "0.5.1"
