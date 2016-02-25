@@ -5,9 +5,14 @@
  - [[#requirements][Requirements]]
  - [[#how-to-build][How to build]]
  - [[#license][License]]
+   - [[#software][Software]]
+   - [[#data][Data]]
 
 * Presentation
 =geo_to_3d= is a tool to create 3D models from geographic data.
+
+The Digital Elevation Models (DEM) used to generate the 3D models are a courtesy
+of /Jonathan de Ferranti/ at http://www.viewfinderpanoramas.org.
 
 * Requirements
 - [[https://www.rust-lang.org/][rust]]
@@ -39,7 +44,8 @@ $ cargo run -q -- -h
 #+END_SRC
 
 * License
-This work is licensed under the term of the [[https://www.gnu.org/licenses/gpl-3.0.html][GPL v3.0]] license:
+** Software
+This software is licensed under the term of the [[https://www.gnu.org/licenses/gpl-3.0.html][GPL v3.0]] license:
 
 #+BEGIN_QUOTE
 geo_to_3d is a tool to create 3D models from geographic data.
@@ -60,3 +66,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #+END_QUOTE
 
 See [[file:LICENSE.md][LICENSE.md]] for the complete license.
+
+** Data
+This software is downloading topographic data from [[http://www.viewfinderpanoramas.org/][viewfinderpanoramas]], a
+project of /Jonathan de Ferranti/. The use of these data are conditioned to its
+[[http://www.viewfinderpanoramas.org/][Term of Use]].
