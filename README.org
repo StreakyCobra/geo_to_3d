@@ -3,6 +3,8 @@
 * Outline                                                             :TOC@2:
  - [[#presentation][Presentation]]
  - [[#requirements][Requirements]]
+   - [[#build-time][Build time]]
+   - [[#run-time][Run time]]
  - [[#how-to-build][How to build]]
  - [[#license][License]]
    - [[#software][Software]]
@@ -15,10 +17,13 @@ The Digital Elevation Models (DEM) used to generate the 3D models are a courtesy
 of /Jonathan de Ferranti/ at http://www.viewfinderpanoramas.org.
 
 * Requirements
-- [[https://www.rust-lang.org/][rust]]
-- [[https://crates.io/][cargo]]
-- [[https://www.gnu.org/software/wget/wget.html][wget]]
-- [[http://www.info-zip.org/UnZip.html][unzip]]
+** Build time
+- [[https://www.rust-lang.org/][rust]] (for compilation)
+- [[https://crates.io/][cargo]] (for dependencies management)
+
+** Run time
+- [[https://www.gnu.org/software/wget/wget.html][wget]] (to download geographic data)
+- [[http://www.info-zip.org/UnZip.html][unzip]] (to extract geographic data)
 
 * How to build
 In order to build this project, you will need to install tooling for compiling
