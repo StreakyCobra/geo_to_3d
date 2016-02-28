@@ -1,14 +1,49 @@
-extern crate nalgebra;
-
 use core::Location;
 use std::env;
 use std::fmt;
 use std::fs::metadata;
 use std::path;
 use std::process::Command;
-use self::nalgebra::DMat;
+use core::na::DMat;
+use core::{Coordinate, Dem};
 
 const BASE_URL: &'static str = "http://viewfinderpanoramas.org/dem1/";
+
+/// The list of tiles available on viewfinderpanoramas in 1" format.
+const dem1_tiles: [(i8, i8); 34] = [(43,  5),
+                                    (43,  6),
+                                    (43,  7),
+                                    (44,  5),
+                                    (44,  6),
+                                    (44,  7),
+                                    (45,  5),
+                                    (45,  6),
+                                    (45,  7),
+                                    (45,  8),
+                                    (45,  9),
+                                    (45, 10),
+                                    (45, 11),
+                                    (46,  5),
+                                    (46,  6),
+                                    (46,  7),
+                                    (46,  8),
+                                    (45,  9),
+                                    (46, 10),
+                                    (46, 11),
+                                    (45, 12),
+                                    (46, 13),
+                                    (46, 14),
+                                    (46, 15),
+                                    (47,  6),
+                                    (47,  7),
+                                    (47,  8),
+                                    (46,  9),
+                                    (47, 10),
+                                    (47, 11),
+                                    (46, 12),
+                                    (47, 13),
+                                    (47, 14),
+                                    (47, 15),];
 
 struct Tile {
     pub lat: i8,
@@ -88,6 +123,18 @@ fn tile_from_coord(location: &Location) -> Tile {
     }
 }
 
-pub fn get_dem(point_1: &Location, point_2: &Location) -> DMat<f32> {
-    DMat::from_row_vec(2, 2, &[0.0, 0.0, 0.0, 0.0])
+pub fn get_1dem(point_1: &Location, point_2: &Location) -> Dem {
+    Dem {
+        data: DMat::from_row_vec(3, 2, &[0, 0, 0, 0, 0, 0]),
+        res: Coordinate {deg: 0, min: 0, sec: 1.},
+        loc: point_1.clone(),
+        size: (3, 2),
+    }
+}
+
+fn tile_available(tile: &Tile) -> bool {
+    for pos in dem1_tiles.into_iter() {
+        if pos.0 == tile.lat && pos.1 == tile.lon { return true }
+    };
+    return false
 }
