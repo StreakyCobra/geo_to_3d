@@ -1,6 +1,6 @@
 extern crate nalgebra;
 
-use core::Coord;
+use core::Location;
 use std::env;
 use std::fmt;
 use std::fs::metadata;
@@ -11,8 +11,8 @@ use self::nalgebra::DMat;
 const BASE_URL: &'static str = "http://viewfinderpanoramas.org/dem1/";
 
 struct Tile {
-    pub lat: i32,
-    pub lon: i32,
+    pub lat: i8,
+    pub lon: i8,
 }
 
 impl fmt::Display for Tile {
@@ -65,7 +65,7 @@ fn get_tile(tile: &Tile) {
         Ok(_) => {
             println!("Tile {} found", tile);
             return;
-        }
+       }
         // The `hgt` file doesn't exist, check for the `zip`
         Err(_) => {
             match metadata(tile_path(&tile, "zip")) {
@@ -81,13 +81,13 @@ fn get_tile(tile: &Tile) {
     }
 }
 
-fn tile_from_coord(coord: &Coord) -> Tile {
+fn tile_from_coord(location: &Location) -> Tile {
     Tile {
-        lat: coord.lat as i32,
-        lon: coord.lon as i32,
+        lat: location.lat.deg,
+        lon: location.lon.deg,
     }
 }
 
-pub fn get_dem(point_1: &Coord, point_2: &Coord) -> DMat<f32> {
+pub fn get_dem(point_1: &Location, point_2: &Location) -> DMat<f32> {
     DMat::from_row_vec(2, 2, &[0.0, 0.0, 0.0, 0.0])
 }

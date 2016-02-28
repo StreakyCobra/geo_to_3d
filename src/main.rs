@@ -5,7 +5,7 @@ mod core;
 mod srtm;
 
 use clap::{Arg, ArgMatches, App};
-use core::Coord;
+use core::{Location, Coordinate};
 
 fn parse_arguments<'a>() -> ArgMatches<'a> {
     // Get arguments matches
@@ -40,16 +40,21 @@ fn parse_arguments<'a>() -> ArgMatches<'a> {
 fn main() {
     let matches = parse_arguments();
 
-    let coord_1 = Coord {
-        lat: matches.value_of("LAT_1").unwrap().parse().unwrap(),
-        lon: matches.value_of("LON_1").unwrap().parse().unwrap(),
+    let lat_1 = matches.value_of("LAT_1").unwrap().parse().unwrap();
+    let lon_1 = matches.value_of("LON_1").unwrap().parse().unwrap();
+    let lat_2 = matches.value_of("LAT_2").unwrap().parse().unwrap();
+    let lon_2 = matches.value_of("LON_2").unwrap().parse().unwrap();
+
+    let loc_1 = Location {
+        lat: Coordinate::new(&lat_1),
+        lon: Coordinate::new(&lon_1),
     };
 
-    let coord_2 = Coord {
-        lat: matches.value_of("LAT_2").unwrap().parse().unwrap(),
-        lon: matches.value_of("LON_2").unwrap().parse().unwrap(),
+    let loc_2 = Location {
+        lat: Coordinate::new(&lat_2),
+        lon: Coordinate::new(&lon_2),
     };
 
-    println!("{}", coord_1);
-    println!("{}", coord_2);
+    println!("{}", loc_1);
+    println!("{}", loc_2);
 }
