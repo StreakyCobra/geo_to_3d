@@ -1,6 +1,6 @@
 use std::fmt;
 
-use core::Coordinate;
+use core::{Coordinate, Location};
 
 #[derive(Clone, Debug)]
 struct Tile {
@@ -28,19 +28,13 @@ fn tile_filename(tile: &Tile, ext: &str) -> String {
     }
 }
 
-fn tile_filename(tile: &Tile, ext: &str) -> String {
-    match tile.dataset {
-        Dataset::Dem1 => format!("{}{:02}{}{:03}.hgt",
-                                 if tile.lat > 0 { "N" } else { "S" },
-                                 tile.lat,
-                                 if tile.lon > 0 { "E" } else { "W" },
-                                 tile.lon,
-                                 ext),
-        Dataset::Dem3 => "".to_string(),
-        Dataset::Dem15 => "".to_string(),
+fn tile_from_location(location: &Location, dataset: Dataset) -> Tile {
+    Tile {
+        dataset: dataset,
+        lat: location.lat.deg,
+        lon: location.lon.deg,
     }
 }
-
 
 #[derive(Clone, Debug)]
 pub enum Dataset {
@@ -68,7 +62,7 @@ fn dataset_resolution (dataset: &Dataset) -> Coordinate {
 }
 
 /// The list of tiles available in 1" format, with their optional archive name.
-const dem1_tiles: [((i8, i8), Option<String>); 34] = [
+const dem1_tiles: [((i8, i8), Option<String>); 39] = [
     // Central Spain
     ((40, -6), None),
     ((40, -5), None),
@@ -111,5 +105,4 @@ const dem1_tiles: [((i8, i8), Option<String>); 34] = [
     // Slovakia/Poland
     ((49, 19), None),
     ((49, 20), None),
-    //
 ];
