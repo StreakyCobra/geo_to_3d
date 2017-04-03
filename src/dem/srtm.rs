@@ -100,7 +100,7 @@ fn get_tile(tile: &Tile) {
         Ok(_) => {
             println!("Tile {} found", tile);
             return;
-       }
+        }
         // The `hgt` file doesn't exist, check for the `zip`
         Err(_) => {
             match metadata(tile_path(&tile, "zip")) {
@@ -127,7 +127,11 @@ fn tile_from_coord(location: &Location) -> Tile {
 pub fn get_1dem(point_1: &Location, point_2: &Location) -> Dem {
     Dem {
         data: DMatrix::from_row_slice(3, 2, &[0, 0, 0, 0, 0, 0]),
-        res: Coordinate {deg: 0, min: 0, sec: 1.},
+        res: Coordinate {
+            deg: 0,
+            min: 0,
+            sec: 1.,
+        },
         loc: point_1.clone(),
         size: (3, 2),
     }
@@ -135,7 +139,9 @@ pub fn get_1dem(point_1: &Location, point_2: &Location) -> Dem {
 
 fn tile_available(tile: &Tile) -> bool {
     for pos in DEM1_TILES.into_iter() {
-        if pos.0 == tile.lat && pos.1 == tile.lon { return true }
-    };
-    return false
+        if pos.0 == tile.lat && pos.1 == tile.lon {
+            return true;
+        }
+    }
+    return false;
 }
