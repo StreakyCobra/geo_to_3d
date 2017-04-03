@@ -7,9 +7,9 @@ use std::process::Command;
 use core::na::DMatrix;
 use core::{Coordinate, Dem};
 
-const BASE_URL: &'static str = "http://viewfinderpanoramas.org/dem1/";
+const BASE_URL: &'static str = "http://viewfinderpanoramas.org/dem1d/";
 
-/// The list of tiles available on viewfinderpanoramas in 1" format.
+/// List of available tiles on viewfinderpanoramas at 1" precision.
 const DEM1_TILES: [(i8, i8); 34] = [(43,  5),
                                     (43,  6),
                                     (43,  7),
