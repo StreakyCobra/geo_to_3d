@@ -10,7 +10,7 @@ use core::{Coordinate, Dem};
 const BASE_URL: &'static str = "http://viewfinderpanoramas.org/dem1/";
 
 /// The list of tiles available on viewfinderpanoramas in 1" format.
-const dem1_tiles: [(i8, i8); 34] = [(43,  5),
+const DEM1_TILES: [(i8, i8); 34] = [(43,  5),
                                     (43,  6),
                                     (43,  7),
                                     (44,  5),
@@ -123,6 +123,7 @@ fn tile_from_coord(location: &Location) -> Tile {
     }
 }
 
+#[allow(unused_variables)]
 pub fn get_1dem(point_1: &Location, point_2: &Location) -> Dem {
     Dem {
         data: DMatrix::from_row_slice(3, 2, &[0, 0, 0, 0, 0, 0]),
@@ -133,7 +134,7 @@ pub fn get_1dem(point_1: &Location, point_2: &Location) -> Dem {
 }
 
 fn tile_available(tile: &Tile) -> bool {
-    for pos in dem1_tiles.into_iter() {
+    for pos in DEM1_TILES.into_iter() {
         if pos.0 == tile.lat && pos.1 == tile.lon { return true }
     };
     return false

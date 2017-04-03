@@ -62,7 +62,7 @@ fn dataset_resolution (dataset: &Dataset) -> Coordinate {
 }
 
 /// The list of tiles available in 1" format, with their optional archive name.
-const dem1_tiles: [((i8, i8), Option<String>); 39] = [
+const DEM1_TILES: [((i8, i8), Option<String>); 39] = [
     // Central Spain
     ((40, -6), None),
     ((40, -5), None),
