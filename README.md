@@ -68,7 +68,7 @@ This software is licensed under the term of
 the [GPL v3.0](https://www.gnu.org/licenses/gpl-3.0.html) license:
 
 > geo\_to\_3d is a tool to create 3D models from geographic data.
-> Copyright (C) 2016 Fabien Dubosson &lt;fabien.dubosson@gmail.com&gt;
+> Copyright (C) 2016-2017 Fabien Dubosson &lt;fabien.dubosson@gmail.com&gt;
 >
 > This program is free software: you can redistribute it and/or modify
 > it under the terms of the GNU General Public License as published by
