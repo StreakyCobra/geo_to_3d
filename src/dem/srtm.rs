@@ -4,7 +4,7 @@ use std::fmt;
 use std::fs::metadata;
 use std::path;
 use std::process::Command;
-use core::na::DMat;
+use core::na::DMatrix;
 use core::{Coordinate, Dem};
 
 const BASE_URL: &'static str = "http://viewfinderpanoramas.org/dem1/";
@@ -125,7 +125,7 @@ fn tile_from_coord(location: &Location) -> Tile {
 
 pub fn get_1dem(point_1: &Location, point_2: &Location) -> Dem {
     Dem {
-        data: DMat::from_row_vec(3, 2, &[0, 0, 0, 0, 0, 0]),
+        data: DMatrix::from_row_slice(3, 2, &[0, 0, 0, 0, 0, 0]),
         res: Coordinate {deg: 0, min: 0, sec: 1.},
         loc: point_1.clone(),
         size: (3, 2),

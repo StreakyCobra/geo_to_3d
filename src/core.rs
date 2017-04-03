@@ -1,8 +1,8 @@
-extern crate nalgebra as na;
+pub extern crate nalgebra as na;
 
 use std::fmt;
 use std::ops::{Add, Sub, Index};
-use self::na::DMat;
+use self::na::DMatrix;
 
 
 #[derive(Clone, Debug)]
@@ -76,7 +76,7 @@ impl fmt::Display for Location {
 #[derive(Debug)]
 pub struct Dem {
     /// The Digital Elevation Model data.
-    pub data: DMat<i16>,
+    pub data: DMatrix<i16>,
     /// Angular resolution of the Digital Elevation Model.
     pub res: Coordinate,
     /// Location of the first point of the Digital Elevation Model.
